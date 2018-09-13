@@ -1,0 +1,7 @@
+#title {
+	border-style: 1px solid;
+}
+
+table, th, td {
+	border: 1px solid blue;
+}
