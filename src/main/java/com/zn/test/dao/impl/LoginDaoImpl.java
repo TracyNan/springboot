@@ -35,7 +35,6 @@ public class LoginDaoImpl implements LoginDao{
 				loginInfo.setVersion(rs.getString("Version"));
 				loginInfo.setSource(rs.getString("Source"));
 				loginInfo.setLastLoginTime(rs.getDate("LastLoginTime"));
-				System.out.println("logininfo="+loginInfo);
 				return null;
 			}
 			
