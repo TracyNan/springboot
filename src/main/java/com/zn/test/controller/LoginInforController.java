@@ -6,11 +6,14 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.zn.test.dao.LoginDao;
 import com.zn.test.dao.UserInfoDao;
 import com.zn.test.pojo.LoginInfo;
@@ -30,19 +33,24 @@ public class LoginInforController {
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		JSONObject jsonObject;
+		ObjectWriter oWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		switch (action) {
 		case "info":
 			LoginInfo loginInfo = new LoginInfo();
 			loginInfo = loginDao.getLogininfo(id.toLowerCase());
-			System.out.println("logininfo is " + loginInfo);
-			// request.setAttribute("loginInfo", loginInfo);
-			out.print(loginInfo);
+			String infoJson = oWriter.writeValueAsString(loginInfo);
+			jsonObject = new JSONObject(infoJson);
+			jsonObject.put("Type", "info");
+			out.print(jsonObject);
 			break;
 		case "prof":
 			UserInfo userInfo = new UserInfo();
 			userInfo = userInfoDao.getUserInfo(id.toLowerCase());
-			System.out.println("user info is " + userInfo);
-			out.print(userInfo);
+			String profJson = oWriter.writeValueAsString(userInfo);
+			jsonObject = new JSONObject(profJson);
+			jsonObject.put("Type", "prof");
+			out.print(jsonObject);
 			break;
 		}
 		return null;

@@ -8,11 +8,51 @@ function search() {
 		url : 'check',
 		data : {
 			'name' : userId,
-			'action': action,
+			'action' : action,
 		},
 		success : function(response) {
-			document.getElementById("Info").innerHTML = "<p>" + response
-					+ "</p>"
+			var dataJson = JSON.parse(response);
+			var html = "";
+			if (dataJson.Type == "info") {
+				html += "<table><tr><th>LastLoginTime</th><th>Hostname</th><th>Source</th><th>SoeId</th><th>Version</th></tr><tr><td>"
+						+ dataJson.lastLoginTime
+						+ "</td><td>"
+						+ dataJson.hostname
+						+ "</td><td>"
+						+ dataJson.source
+						+ "</td><td>"
+						+ dataJson.soeId
+						+ "</td><td>"
+						+ dataJson.version + "</td></tr></table>";
+			} else if (dataJson.Type == "prof") {
+				var baseInfo = dataJson.userBaseInfo;
+				var table1 = "<table><tr><th>SoeId</th><th>Name</th><th>Email</th><th>Status</th></tr><tr><td>"
+						+ baseInfo.id
+						+ "</td><td>"
+						+ baseInfo.Name
+						+ "</td><td>"
+						+ baseInfo.eMail
+						+ "</td><td>"
+						+ baseInfo.status + "</td></tr></table>";
+				var profInfo = dataJson.userProfInfo;
+				var table2 = "<table><tr><th>SoeId</th><th>type</th><th>value</th></tr><tr><td>"
+						+ profInfo.id
+						+ "</td><td>"
+						+ profInfo.type
+						+ "</td><td>" + profInfo.value + "</td></tr></table>";
+				var roleInfos = dataJson.userRoleInfos;
+				var table3 = "<table><tr><th>SoeId</th><th>resourceId</th><th>resourceName</th><th>roleName</th><th>env</th></tr>"
+				for ( var index in roleInfos) {
+					table3 += "<tr><td>" + roleInfos[index].id + "</td><td>"
+							+ roleInfos[index].resourceId + "</td><td>"
+							+ roleInfos[index].resourceName + "</td><td>"
+							+ roleInfos[index].roleName + "</td><td>"
+							+ roleInfos[index].env + "</td></tr>";
+				}
+				table3 += "</table>"
+				html += "<p></p>" + table1 + "<p></p>" + table2 + "<p></p>" + table3;
+			}
+			document.getElementById("Info").innerHTML = html;
 		}
 	});
 }

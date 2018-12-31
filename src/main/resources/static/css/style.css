@@ -1,12 +1,20 @@
 #title {
 	border-style: 1px solid;
-	
 }
 
-table, th, td {
-	border: 1px solid blue;
+table {
+	border: 1px solid #0000ff;
+	cellspacing: 0;
+	text-align: center;
+	vertical-align: middle;
 }
 
-#Login{
-	
+table tr td {
+	border: 1px solid #0000ff;
+	cellspacing: 0;
+}
+
+table th {
+	border: 1px solid #0000ff;
+	cellspacing: 0;
 }
