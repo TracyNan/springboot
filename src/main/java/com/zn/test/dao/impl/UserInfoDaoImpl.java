@@ -1,12 +1,10 @@
 package com.zn.test.dao.impl;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import com.zn.test.dao.UserInfoDao;
@@ -38,17 +36,13 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	private UserBaseInfo getUserBaseInfo(String userId) {
 
-		List<UserBaseInfo> baseInfos = this.jdbcTemplate.query(baseInfoSQL, new Object[] { userId }, new RowMapper<UserBaseInfo>() {
-
-			@Override
-			public UserBaseInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-				UserBaseInfo baseInfo = new UserBaseInfo();
-				baseInfo.setId(rs.getString("ID"));
-				baseInfo.setName(rs.getString("Name"));
-				baseInfo.seteMail(rs.getString("Email"));
-				baseInfo.setStatus(rs.getString("Status"));
-				return baseInfo;
-			}
+		List<UserBaseInfo> baseInfos = this.jdbcTemplate.query(baseInfoSQL, new Object[] { userId }, (ResultSet rs, int rowNum) -> {
+			UserBaseInfo baseInfo = new UserBaseInfo();
+			baseInfo.setId(rs.getString("ID"));
+			baseInfo.setName(rs.getString("Name"));
+			baseInfo.seteMail(rs.getString("Email"));
+			baseInfo.setStatus(rs.getString("Status"));
+			return baseInfo;
 		});
 		if (baseInfos.isEmpty()) {
 			return null;
@@ -57,16 +51,12 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	private UserProfInfo getUserProfileInfo(String userId) {
-		List<UserProfInfo> profInfos = this.jdbcTemplate.query(profileInfoSQL, new Object[] { userId }, new RowMapper<UserProfInfo>() {
-
-			@Override
-			public UserProfInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-				UserProfInfo profInfo = new UserProfInfo();
-				profInfo.setId(rs.getString("UserID"));
-				profInfo.setType(rs.getString("Type"));
-				profInfo.setValue(rs.getString("Value"));
-				return profInfo;
-			}
+		List<UserProfInfo> profInfos = this.jdbcTemplate.query(profileInfoSQL, new Object[] { userId }, (ResultSet rs, int rowNum) -> {
+			UserProfInfo profInfo = new UserProfInfo();
+			profInfo.setId(rs.getString("UserID"));
+			profInfo.setType(rs.getString("Type"));
+			profInfo.setValue(rs.getString("Value"));
+			return profInfo;
 		});
 		if (profInfos.isEmpty()) {
 			return null;
@@ -75,18 +65,14 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	private List<UserRoleInfo> getUserRoleInfo(String userId) {
-		List<UserRoleInfo> profInfos = this.jdbcTemplate.query(roleInfoSQL, new Object[] { userId }, new RowMapper<UserRoleInfo>() {
-
-			@Override
-			public UserRoleInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-				UserRoleInfo profInfo = new UserRoleInfo();
-				profInfo.setId(rs.getString("UserID"));
-				profInfo.setResourceId(rs.getString("ResourceID"));
-				profInfo.setResourceName(rs.getString("ResourceName"));
-				profInfo.setRoleName(rs.getString("RoleName"));
-				profInfo.setEnv(rs.getString("ENV"));
-				return profInfo;
-			}
+		List<UserRoleInfo> profInfos = this.jdbcTemplate.query(roleInfoSQL, new Object[] { userId }, (ResultSet rs, int rowNum) -> {
+			UserRoleInfo profInfo = new UserRoleInfo();
+			profInfo.setId(rs.getString("UserID"));
+			profInfo.setResourceId(rs.getString("ResourceID"));
+			profInfo.setResourceName(rs.getString("ResourceName"));
+			profInfo.setRoleName(rs.getString("RoleName"));
+			profInfo.setEnv(rs.getString("ENV"));
+			return profInfo;
 		});
 		if (profInfos.isEmpty()) {
 			return null;
