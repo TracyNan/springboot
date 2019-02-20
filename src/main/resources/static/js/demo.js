@@ -50,19 +50,20 @@ function search() {
 							+ roleInfos[index].env + "</td></tr>";
 				}
 				table3 += "</table>"
-				html += "<p></p>" + table1 + "<p></p>" + table2 + "<p></p>" + table3;
+				html += "<p></p>" + table1 + "<p></p>" + table2 + "<p></p>"
+						+ table3;
 			}
 			document.getElementById("Info").innerHTML = html;
 		}
 	});
 }
 
-function mirror(){
-	var mirrorId=document.getElementById("mirrorId").value;
-	var userId=document.getElementById("userId").value;
-	var userName=document.getElementById("userName").value;
-	var userMail=document.getElementById("userMail").value;
-	if(mirrorId==""||userId==""||userName==""||userMail==""){
+function mirror() {
+	var mirrorId = document.getElementById("mirrorId").value;
+	var userId = document.getElementById("userId").value;
+	var userName = document.getElementById("userName").value;
+	var userMail = document.getElementById("userMail").value;
+	if (mirrorId == "" || userId == "" || userName == "" || userMail == "") {
 		alert("Please input user information");
 		return false;
 	}
@@ -77,9 +78,15 @@ function mirror(){
 		},
 		success : function(response) {
 			var dataJson = JSON.parse(response);
-			if(dataJson.result == "success"){
+			if (dataJson.result == "success") {
 				alert("success");
-			}else{
+				document.getElementById("mirrorId").value = userId;
+				document.getElementById("userId").value = "";
+				document.getElementById("userName").value = "";
+				document.getElementById("userMail").value = "";
+				document.getElementById("items").selectedIndex=1;
+				search();
+			} else {
 				alert("Error occure!");
 			}
 		}
