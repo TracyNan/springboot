@@ -1,5 +1,5 @@
 function search() {
-	var userId = document.getElementById("userId").value;
+	var userId = document.getElementById("mirrorId").value;
 	var actions = document.getElementById("items");
 	var index = actions.selectedIndex;
 	var action = actions.options[index].value;
@@ -53,6 +53,35 @@ function search() {
 				html += "<p></p>" + table1 + "<p></p>" + table2 + "<p></p>" + table3;
 			}
 			document.getElementById("Info").innerHTML = html;
+		}
+	});
+}
+
+function mirror(){
+	var mirrorId=document.getElementById("mirrorId").value;
+	var userId=document.getElementById("userId").value;
+	var userName=document.getElementById("userName").value;
+	var userMail=document.getElementById("userMail").value;
+	if(mirrorId==""||userId==""||userName==""||userMail==""){
+		alert("Please input user information");
+		return false;
+	}
+	ajax({
+		method : 'POST',
+		url : 'mirror',
+		data : {
+			'mirrorId' : mirrorId,
+			'userId' : userId,
+			'userName' : userName,
+			'userMail' : userMail,
+		},
+		success : function(response) {
+			var dataJson = JSON.parse(response);
+			if(dataJson.result == "success"){
+				alert("success");
+			}else{
+				alert("Error occure!");
+			}
 		}
 	});
 }
