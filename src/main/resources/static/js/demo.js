@@ -93,6 +93,10 @@ function mirror() {
 	});
 }
 
+function next(){
+	window.location.href="login";
+}
+
 function ajax(opt) {
 	opt = opt || {};
 	opt.method = opt.method.toUpperCase() || 'POST';
