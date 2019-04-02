@@ -18,3 +18,27 @@ table th {
 	border: 1px solid #0000ff;
 	cellspacing: 0;
 }
+
+.login1{
+
+background: url("../img/img2.jpg") no-repeat;
+
+height:100%;
+
+width:100%;
+
+overflow: hidden;
+
+background-size:cover;ªÚ’ﬂbackground-size:100%;
+
+}
+
+.login1{
+	width: 400px; 
+	background-color: rgba(0,0,0,0.3);
+	height:400px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-200px 0 0 -200px;
+}
