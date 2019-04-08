@@ -4,17 +4,21 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset="UTF-8">
 <title>Welcome to support page</title>
-<script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body class="login1">
-	<div id="loginpanel">
-	<h2>Sweet heart for Nan&Lingyu</h2>
-<!-- 		<select id="items">
-			<option value="info">User Login Info</option>
-			<option value="prof">User Profile Info</option>
-		</select>
-		<input id="userId" type="text"> <input type="button" value="submit" onclick="search()" />
- -->	</div>
+	<div class="loginpanel">
+		<div class="title">
+			<div class="titleMessage">Sweet heart for Nan&Lingyu</div>
+		</div>
+		<div class="loginId">
+			<input type="text" id="username" placeholder="请输入用户名"/>
+		</div>
+		<div class="password">
+			<input type="text" id="password" placeholder="请输入密码"/>
+		</div>
+		<button class="submit" onclick="login()">登陆</button>
+	</div>
 	<div id="Info"></div>
 </body>
 </html>

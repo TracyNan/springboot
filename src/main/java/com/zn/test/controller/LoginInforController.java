@@ -18,6 +18,7 @@ import com.zn.test.dao.LoginDao;
 import com.zn.test.dao.UserInfoDao;
 import com.zn.test.pojo.LoginInfo;
 import com.zn.test.pojo.UserInfo;
+import com.zn.test.pojo.user.ZWUser;
 
 @Controller
 public class LoginInforController {
@@ -29,7 +30,8 @@ public class LoginInforController {
 
 	@RequestMapping("/check")
 	// http://localhost:8080/check?name=rc47871
-	String home(@RequestParam(value = "name", defaultValue = "nz18977") String id, @RequestParam(value = "action", defaultValue = "info") String action, HttpServletRequest request,
+	String home(@RequestParam(value = "name", defaultValue = "nz18977") String id,
+			@RequestParam(value = "action", defaultValue = "info") String action, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -52,6 +54,20 @@ public class LoginInforController {
 			jsonObject.put("Type", "prof");
 			out.print(jsonObject);
 			break;
+		}
+		return null;
+	}
+
+	@RequestMapping("/login")
+	String login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ZWUser user=loginDao.nwLogin(username, password);
+		System.out.println(user.toString());
+		PrintWriter out = response.getWriter();
+		if (user.getLoginId()>=1) {
+			out.print("success");
+		}else {
+			out.print("fail");
 		}
 		return null;
 	}

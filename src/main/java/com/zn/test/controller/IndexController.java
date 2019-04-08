@@ -9,4 +9,12 @@ public class IndexController {
 	public String index() {
 		return "/index.html";
 	}
+	@RequestMapping("/success")
+	public String success() {
+		return "/success.html";
+	}
+	@RequestMapping("/fail")
+	public String fail() {
+		return "/fail.html";
+	}
 }
