@@ -51,7 +51,7 @@ table th {
 }
 
 input {
-	margin:50px 0 0 100px;
+	margin: 50px 0 0 100px;
 	border: 1px solid #ccc;
 	padding: 7px 0px;
 	border-radius: 3px;
@@ -74,7 +74,28 @@ input:focus {
 		rgba(102, 175, 233, .6)
 }
 
-.loginId ,.password{
+.loginId, .password,.submitdiv,.RegidterInfo {
 	width: 400px;
-	height: 100px;
+	height: 70px;
+}
+
+button {
+	margin: 50px 0 0 100px;
+	padding: 4px 0px;
+	width: 176px;
+	height: 30px;
+	background-color: #7777f5;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.RegidterInfo{
+	font-size: 16px;
+	color: red;
 }

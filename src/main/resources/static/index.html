@@ -7,18 +7,21 @@
 <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body class="login1">
-	<div class="loginpanel">
-		<div class="title">
-			<div class="titleMessage">Sweet heart for Nan&Lingyu</div>
+	<form action="" method="get">
+		<div class="loginpanel">
+			<div class="title">
+				<div class="titleMessage">Sweet heart for Nan&Lingyu</div>
+			</div>
+			<div class="loginId">
+				<input type="text" id="username" placeholder="请输入用户名" />
+			</div>
+			<div class="password">
+				<input type="text" id="password" placeholder="请输入密码" />
+			</div>
+			<div id="submitId" class="submitdiv">
+				<button class="submit" onclick="login()">登陆</button>
+			</div>
 		</div>
-		<div class="loginId">
-			<input type="text" id="username" placeholder="请输入用户名"/>
-		</div>
-		<div class="password">
-			<input type="text" id="password" placeholder="请输入密码"/>
-		</div>
-		<button class="submit" onclick="login()">登陆</button>
-	</div>
-	<div id="Info"></div>
+	</form>
 </body>
 </html>

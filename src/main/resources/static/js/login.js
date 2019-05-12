@@ -48,7 +48,8 @@ function login() {
 			if(response=="success"){
 				window.location.href="/success";
 			}else{
-				window.location.href="/fail";
+				document.getElementById("submitId").insertAdjacentHTML("afterend", "<div class='RegidterInfo'>login error</div>");
+				alert("yes");
 			}
 		}
 	});
